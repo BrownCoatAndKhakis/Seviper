@@ -1,0 +1,61 @@
+
+public class Animal {
+
+	String genus;
+	String species;
+	int numLegs;
+
+	public Animal(String mySpecies, String myGenus, int myNumLegs) {
+		this.genus = myGenus;
+		this.species = mySpecies;
+		this.numLegs = myNumLegs;
+	}
+
+	public void makeNoise() {
+		System.out.println('mmmmmmm');
+	}
+
+	public void breathe() {
+		// do some breathing stuff
+	}
+}
+
+
+public class Dog extends Animal {
+
+	String name;
+	String color;
+
+	public Dog (String mySpecies, String myGenus, int myNumLegs, String myName, String myColor) {
+		super(mySpecies, myGenus, myName);
+		this.name = myName;
+		this.color = myColor;
+	}
+
+	public void makeNoise() {
+		System.out.println('bark!');
+	}
+
+	publc void retrieve(Ball ball) {
+		// go retrieve
+	}
+
+}
+
+public class Pug extends Dog {
+	public void beStupid(){
+		// stuff
+	}
+}
+
+
+
+public static void main(String[] args) {
+	Dog doge = new Dog("Doge", "black");
+	doge.breathe();
+	Animal myAnimal = new Animal();
+	myFunction(doge);
+	Pug pug = new Pug();
+	pug.beStupid();
+	pug.retrieve();
+}

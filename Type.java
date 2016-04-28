@@ -1,16 +1,9 @@
-
-
-public enum Type {
-  BUG,
-  DRAGON,
-  FIRE,
-  FLYING,
-  GHOST,
-  GRASS,
-  GROUND,
-  ICE,
-  NORMAL,
-  PYSCHIC,
-  SHADOW,
-  WATER,
-}
+Type.java 
+  String bug = "bug";
+  String fire = "fire";
+  String water = "water";
+  String grass = "grass";
+  String ghost = "ghost";
+  String electic = "electric";
+  String rock = "rock";
+  String 
