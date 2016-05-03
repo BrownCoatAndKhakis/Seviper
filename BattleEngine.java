@@ -10,23 +10,32 @@ public class BattleEngine {
 	}
 
 	public void battle(){
-		String p1Action = selectPlayerAction();
-		String p2Action = selectPlayerAction();
+		Move player1ActionMove = playerActionMove(this.fighter1);
+		Move player2ActionMove = playerActionMove(this.fighter2);
 
-		if(p1Action.equals("Moves")){
-			Move selectedMove = selectMove(this.fighter1);
-		}
-
-		if(p2Action.equals("Moves")){
-			Move selectedMove = selectMove(this.fighter2);
-		}
+	
+	}
+	public Move playerActionMove (Fighter fighter){
+		String playerAction = selectPlayerAction(fighter);
+		
+		if(playerAction.equals("Moves")) {
+			Move selectedMove = null;
+ 			while(selectedMove == null && checkMovePP(selectedMove) == false) {
+				selectedMove = selectMove(fighter);
+				
+ 			}
+ 			return selectedMove;
+ 		}
+ 		//TODO: Make the function repeat instead of staying at null
+ 		else {
+ 			return null;
+ 		}
 	}
 
-	public String selectPlayerAction(){ 
-		System.out.println("Select Switch or Moves");
+	public String selectPlayerAction(Fighter fighter){ 
+		System.out.println("Select Switch or Moves for " + fighter.name);
 		Scanner input = new Scanner(System.in);
 		String inputAction = input.next();
-		System.out.println(inputAction);
 		if (inputAction.equals("Switch")){
 			System.out.println("Selected Switch");
 			return "Switch";
@@ -41,10 +50,17 @@ public class BattleEngine {
 		}
 	}
 
+	public void printMove (Fighter fighter) {
+		for(Move m : fighter.moves){
+			System.out.println(m.name);
+		}
+	}
+
 	public Move selectMove(Fighter fighter) {
 		Scanner input = new Scanner( System.in );
 		input.useDelimiter("\n");
-		System.out.println("Select which move you want to use:");
+		System.out.println("Select which move you want to use for " + fighter.name);
+		printMove(fighter);
 		String moveName = input.next();
 
 		// check if user's choice is actually a move this Fighter has in their moves list
@@ -62,6 +78,9 @@ public class BattleEngine {
 	}
 
 	public Boolean checkMovePP(Move selectedMove) {
+		if (selectedMove == null) {
+			return false;
+		}
 		int pp = selectedMove.pp;
 		if (pp > 0){
 			return true;
