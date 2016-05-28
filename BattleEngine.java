@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class BattleEngine {
 	Fighter fighter1;
@@ -12,6 +13,14 @@ public class BattleEngine {
 	public void battle(){
 		Move player1ActionMove = playerActionMove(this.fighter1);
 		Move player2ActionMove = playerActionMove(this.fighter2);
+		Fighter fasterFighter = checkSpeed(this.fighter1, this.fighter2);
+		if (fasterFighter.equals(fighter1)) {
+			double damage = calculateDamage(player1ActionMove,player1);
+		}
+		else {
+			double damage = calculateDamage(player2ActionMove,player2);
+		}
+		
 
 	
 	}
@@ -90,6 +99,45 @@ public class BattleEngine {
 		}
 	}
 
+	public Fighter checkSpeed(Fighter fighter1, Fighter fighter2) {
+		if (fighter1.speed > fighter2.speed) {
+			System.out.println(fighter1.name);
+			return fighter1;
+		}
+		if (fighter2.speed > fighter1.speed) {
+			System.out.println(fighter2.name);
+			return fighter2;
+		}
+		else {
+			Random r = new Random();
+			int num = r.nextInt(2);
+			if (num == 0) {
+				System.out.println(fighter1.name);
+				return fighter1;
+			}
+			else {
+				System.out.println(fighter2.name);
+				return fighter2;
+			}
+		}
+	}
+
+	public double calculateDamage(Move selectedMove, Fighter fighter1) {
+		int level = fighter1.level;
+		double attack = fighter1.attack;
+		double defense = fighter1.defense;
+		int attackMove = selectedMove.attack;
+		double damage = ((2 * level + 10)/ 250) * ( attack/ defense) * attackMove + 2;
+		System.out.println(damage);
+		return damage;
+	}
+
+	public double calculateTypeDamage(Fighter fighter1, Fighter fighter2){
+		if (fighter1.type = "Fire" && fighter2.type = "Grass"){
+			return 2.0;
+			//TODO: do it
+		} 
+	}
 
 	public static void main (String[] args){
 		Move[] moveListMew = new Move[1];
@@ -106,6 +154,7 @@ public class BattleEngine {
 		
 	
 	}
+		}
 
 }
 	
